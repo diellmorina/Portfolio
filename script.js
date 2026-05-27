@@ -46,6 +46,32 @@ const projects = [
 const projectsContainer = document.getElementById('projectsContainer');
 const modal = document.getElementById('projectModal');
 const closeBtn = document.querySelector('.close');
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+// Hamburger Menu Toggle
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+}
+
+// Close menu when scrolling
+window.addEventListener('scroll', () => {
+    if (hamburger && hamburger.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+    }
+});
 
 // Initialize Projects
 function initializeProjects() {
@@ -111,6 +137,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
+            // Close hamburger menu if open
+            if (hamburger && hamburger.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
             target.scrollIntoView({ behavior: 'smooth' });
         }
     });
