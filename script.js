@@ -39,6 +39,14 @@ const projects = [
         image: "Projects/nissi-barber-shop/Preview.png",
         url: "https://barbershop-nissi.vercel.app/",
         tag: "Barber Shop"
+    },
+    {
+        id: 6,
+        title: "Kosovo EVENTS",
+        description: "Event listing and management platform for Kosovo. Features event discovery, categorization, and user-friendly interface for organizers and attendees.",
+        image: "Projects/ksevents-Preview.png",
+        url: "https://kosovo-events.vercel.app/",
+        tag: "Events"
     }
 ];
 
