@@ -30,9 +30,11 @@
                 <h2 class="section-title">Contact Me</h2>
                 <form id="contactForm" class="contact-form" action="https://formspree.io/f/xdajjqpq" method="POST">
                     <div class="form-grid">
-                        <input type="text" name="name" id="name" placeholder="Your Name" required>
+                        <input type="text" name="firstName" id="firstName" placeholder="Your First Name" required>
+                        <input type="text" name="lastName" id="lastName" placeholder="Your Last Name" required>
                         <input type="email" name="email" id="email" placeholder="Your Email" required>
                         <input type="tel" name="phone" id="phone" placeholder="Your Phone">
+                        </div>
                         <textarea name="message" id="message" rows="6" placeholder="Your Message" required></textarea>
                     </div>
                     <button type="submit" class="cta-button">Send Message</button>

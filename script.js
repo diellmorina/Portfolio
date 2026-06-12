@@ -165,3 +165,148 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Initialize on Page Load
 document.addEventListener('DOMContentLoaded', initializeProjects);
+
+// --- Phone verification for contact form ---
+(() => {
+    const phone = document.getElementById('phone');
+    const phoneVerification = document.getElementById('phoneVerification');
+    const sendCodeBtn = document.getElementById('sendCodeBtn');
+    const codeInput = document.getElementById('codeInput');
+    const verifyCodeBtn = document.getElementById('verifyCodeBtn');
+    const phoneMsg = document.getElementById('phoneMsg');
+    const contactForm = document.getElementById('contactForm');
+
+    if (!phone || !contactForm) return;
+
+    let currentPhone = '';
+
+    function showVerificationUI(show) {
+        phoneVerification.style.display = show ? 'block' : 'none';
+    }
+
+    function setMessage(text, color) {
+        phoneMsg.textContent = text || '';
+        phoneMsg.style.color = color || '#333';
+    }
+
+    function generateCode() {
+        return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+
+    // Save verification state in sessionStorage: { phone: { verified: bool, code: '123456', expires: ms } }
+    function saveState(phoneVal, obj) {
+        const key = 'phone_ver_' + phoneVal;
+        sessionStorage.setItem(key, JSON.stringify(obj));
+    }
+
+    function loadState(phoneVal) {
+        const key = 'phone_ver_' + phoneVal;
+        const v = sessionStorage.getItem(key);
+        return v ? JSON.parse(v) : null;
+    }
+
+    phone.addEventListener('input', () => {
+        const val = phone.value.trim();
+        currentPhone = val;
+        if (val.length > 3) {
+            showVerificationUI(true);
+            const st = loadState(val);
+            if (st && st.verified && st.expires > Date.now()) {
+                setMessage('Phone verified', 'green');
+            } else {
+                setMessage('Not verified', '#333');
+            }
+        } else {
+            showVerificationUI(false);
+        }
+    });
+
+    sendCodeBtn.addEventListener('click', async () => {
+        const phoneVal = phone.value.trim();
+        if (!phoneVal) { setMessage('Enter a phone number first', 'red'); return; }
+        setMessage('Sending code...', '#666');
+        sendCodeBtn.disabled = true;
+        // Try server endpoint first
+        try {
+            const res = await fetch('/api/send-code', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ phone: phoneVal })
+            });
+            if (res.ok) {
+                codeInput.style.display = 'inline-block';
+                verifyCodeBtn.style.display = 'inline-block';
+                setMessage('Code sent. Check your SMS.', '#066');
+            } else {
+                throw new Error('server');
+            }
+        } catch (e) {
+            // client-side fallback (demo mode) — show code in UI for testing
+            const code = generateCode();
+            const expires = Date.now() + 5 * 60 * 1000;
+            saveState(phoneVal, { verified: false, code, expires });
+            codeInput.style.display = 'inline-block';
+            verifyCodeBtn.style.display = 'inline-block';
+            setMessage('Demo code sent (visible for testing)', '#066');
+            // For demo only: reveal code briefly in console and message
+            console.info('Demo verification code for', phoneVal, ':', code);
+        } finally {
+            sendCodeBtn.disabled = false;
+        }
+    });
+
+    verifyCodeBtn.addEventListener('click', async () => {
+        const phoneVal = phone.value.trim();
+        const code = codeInput.value.trim();
+        if (!phoneVal || !code) { setMessage('Provide phone and code', 'red'); return; }
+        setMessage('Verifying...', '#666');
+        verifyCodeBtn.disabled = true;
+        try {
+            const res = await fetch('/api/verify-code', {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ phone: phoneVal, code })
+            });
+            if (res.ok) {
+                const json = await res.json();
+                if (json.verified) {
+                    saveState(phoneVal, { verified: true, code: null, expires: Date.now() + 24 * 60 * 60 * 1000 });
+                    setMessage('Phone verified', 'green');
+                } else {
+                    setMessage('Invalid code', 'red');
+                }
+            } else {
+                // fallback: check client-side stored code
+                const st = loadState(phoneVal);
+                if (st && st.code === code && st.expires > Date.now()) {
+                    saveState(phoneVal, { verified: true, code: null, expires: Date.now() + 24 * 60 * 60 * 1000 });
+                    setMessage('Phone verified (demo)', 'green');
+                } else {
+                    setMessage('Invalid code', 'red');
+                }
+            }
+        } catch (e) {
+            const st = loadState(phoneVal);
+            if (st && st.code === code && st.expires > Date.now()) {
+                saveState(phoneVal, { verified: true, code: null, expires: Date.now() + 24 * 60 * 60 * 1000 });
+                setMessage('Phone verified (demo)', 'green');
+            } else {
+                setMessage('Verification failed', 'red');
+            }
+        } finally {
+            verifyCodeBtn.disabled = false;
+        }
+    });
+
+    // Prevent form submit if phone present but not verified
+    contactForm.addEventListener('submit', (e) => {
+        const phoneVal = phone.value.trim();
+        if (phoneVal.length > 3) {
+            const st = loadState(phoneVal);
+            if (!(st && st.verified && st.expires > Date.now())) {
+                e.preventDefault();
+                setMessage('Please verify your phone before submitting', 'red');
+                codeInput.focus();
+            }
+        }
+    });
+
+})();
