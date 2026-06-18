@@ -52,7 +52,7 @@ const projects = [
         id: 7,
         title: "Fshati Ratkoc",
         description: "Informative website about Ratkoc village in Kosovo. Showcases local culture, history, attractions, and community information with a clean, modern design.",
-        image: "Projects/Ratkoc/images/Preview.png",
+        image: "Projects/Ratkoc-Preview.png",
         url: "https://fshati-ratkoc.vercel.app/",
         tag: "Local"
     },
