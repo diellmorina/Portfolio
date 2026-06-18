@@ -36,7 +36,7 @@ const projects = [
         id: 5,
         title: "Nissi Barber Shop",
         description: "Professional barber shop website showcasing services, gallery, and booking information. Clean, modern design tailored for a salon business.",
-        image: "Projects/nissi-barber-shop/Preview.png",
+        image: "Projects/nissi-Preview.png",
         url: "https://barbershop-nissi.vercel.app/",
         tag: "Barber Shop"
     },
