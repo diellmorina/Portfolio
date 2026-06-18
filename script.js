@@ -4,7 +4,7 @@ const projects = [
         id: 1,
         title: "Apex Athletic",
         description: "Modern athletic brand e-commerce platform featuring product showcase, multilingual support (English/Albanian), and user authentication system for a professional shopping experience.",
-        image: "Projects/Apex-Athletic/Preview.png",
+        image: "Projects/Apex-Athletics-Preview.png",
         url: "https://apex-athletic.vercel.app/",
         tag: "E-Commerce"
     },
@@ -12,7 +12,7 @@ const projects = [
         id: 2,
         title: "Limani Studio",
         description: "Professional photography and video production portfolio. Showcases wedding photography, event coverage, and creative production services with a sleek, elegant design.",
-        image: "Projects/Foto Producent Limani/image.png",
+        image: "Projects/Foto-Limani-Preview.png",
         url: "https://foto-limani.netlify.app/",
         tag: "Photography"
     },
@@ -20,7 +20,7 @@ const projects = [
         id: 3,
         title: "SUVATIMI-H",
         description: "Professional facade and exterior renovation services website. Features project gallery, service descriptions, supplier information, and bilingual interface (English/Albanian).",
-        image: "Projects/SUVATIMI-H/images/Preview.png",
+        image: "Projects/SUVATIMI-H-Preview.png",
         url: "https://suvatimi.vercel.app/",
         tag: "Business"
     },
@@ -28,7 +28,7 @@ const projects = [
         id: 4,
         title: "Nordwall Studio",
         description: "Nordwall Studio is a modern creative web studio focused on building sleek, responsive, and visually engaging digital experiences. The website showcases clean design, smooth animations, and professional development work tailored for brands, startups, and businesses looking to strengthen their online presence.",
-        image: "Projects/Nordwall/Preview.png",
+        image: "Projects/nordwall-Preview.png",
         url: "https://nordwall-studio.vercel.app/",
         tag: "Business"
     },
@@ -54,6 +54,14 @@ const projects = [
         description: "Informative website about Ratkoc village in Kosovo. Showcases local culture, history, attractions, and community information with a clean, modern design.",
         image: "Projects/Ratkoc/images/Preview.png",
         url: "https://fshati-ratkoc.vercel.app/",
+        tag: "Local"
+    },
+    {
+        id: 8,
+        title: "Pecara Vojvodina",
+        description: "Freshly baked every day, Pecara Vojvodina offers delicious breads, pastries, burek, sandwiches, and desserts made with traditional recipes and high-quality ingredients. Experience the taste of homemade goodness in every bite..",
+        image: "Projects/Furra-Preview.jpeg",
+        url: "https://pecara-vojvodina.vercel.app/",
         tag: "Local"
     }
 ];
