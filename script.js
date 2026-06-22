@@ -166,7 +166,19 @@ animatePreloaderPercent(PRELOADER_MIN);
 function renderProjects() {
     projectsContainer.innerHTML = projects.map(project => `
         <div class="project-card" onclick="openProjectModal(${project.id})">
-            <img src="${project.image}" alt="${project.title}" class="project-image">
+            <div class="project-image-wrap">
+                <img src="${project.image}" alt="${project.title}" class="project-image">
+                <a href="${project.url}" class="project-preview-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+                    <span class="project-preview-button" aria-label="Visit website">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M4 8.5L12 13.5 20 8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M4 7.5V16.5H20V7.5L12 12.5 4 7.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                            <path d="M15 7h4v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            <path d="M15 7l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
             <div class="project-info">
                 <h3 class="project-title">${project.title}</h3>
                 <p class="project-description">${project.description}</p>
