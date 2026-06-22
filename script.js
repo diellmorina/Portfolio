@@ -16,7 +16,7 @@ const projects = [
         image: "Projects/Foto-Limani-Preview.png",
         url: "https://foto-limani.netlify.app/",
         tag: "Photography",
-        languages: ["HTML", "CSS", "JavaScript"]
+        languages: ["HTML", "CSS", "Bootstrap", "JavaScript"]
     },
     {
         id: 3,
@@ -43,7 +43,7 @@ const projects = [
         image: "Projects/nissi-Preview.png",
         url: "https://barbershop-nissi.vercel.app/",
         tag: "Barber Shop",
-        languages: ["HTML", "CSS", "JavaScript"]
+        languages: ["HTML", "CSS", "Bootstrap", "JavaScript"]
     },
     // {
     //     id: 6,
@@ -70,7 +70,7 @@ const projects = [
         image: "Projects/Furra-Preview.jpeg",
         url: "https://pekara-vojvodina.vercel.app/",
         tag: "Business",
-        languages: ["HTML", "CSS", "JavaScript"]
+        languages: ["HTML", "CSS", "Bootstrap", "JavaScript"]
     }
 ];
 

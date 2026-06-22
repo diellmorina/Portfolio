@@ -159,6 +159,12 @@ body {
     color: #ffffff;
 }
 
+.site-logo {
+    height: 42px;
+    width: auto;
+    display: block;
+}
+
 .logo span {
     color: var(--primary-color);
 }
