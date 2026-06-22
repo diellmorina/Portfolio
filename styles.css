@@ -457,7 +457,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(6, 7, 10, 0.10);
+    background: rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(0px);
     transition: backdrop-filter 0.3s ease, background 0.3s ease;
     pointer-events: none;
@@ -465,7 +465,7 @@ body {
 
 .project-image-wrap:hover::before {
     backdrop-filter: blur(10px);
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.40);
 }
 
 .project-image {
@@ -473,11 +473,12 @@ body {
     height: 220px;
     object-fit: cover;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .project-image-wrap:hover .project-image {
     transform: scale(1.02);
+    filter: blur(4px);
 }
 
 .project-preview-link {
@@ -505,19 +506,15 @@ body {
     justify-content: center;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.32);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     color: #0b191f;
-    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.18);
     transform: scale(0.96);
-    transition: transform 0.25s ease, opacity 0.25s ease, background-color 0.25s ease;
+    transition: transform 0.25s ease;
 }
 
 .project-image-wrap:hover .project-preview-button {
     transform: scale(1);
-}
-
-.project-preview-button:hover {
-    background: #ffffff;
 }
 
 .project-preview-button svg {
