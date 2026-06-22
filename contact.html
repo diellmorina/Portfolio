@@ -3,47 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact — My Projects</title>
+    <title>Contact — Diell Morina</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="preloader" class="preloader">
+        <div class="preloader-card">
+            <div class="preloader-logo">Diell<span>Morina</span></div>
+            <div class="preloader-body">
+                <div class="spinner"></div>
+                <div class="loader-copy">
+                    <p class="loader-title">Launching interface</p>
+                    <p class="loader-subtitle">Preparing a sleek experience...</p>
+                </div>
+                <div class="loader-percent" id="loaderPercent">0%</div>
+            </div>
+        </div>
+    </div>
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="container">
-            <div class="logo">My Projects</div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+        <div class="container nav-inner">
+            <a href="index.html#home" class="logo">Diell<span>Morina</span></a>
+            <div class="nav-actions">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="cta-button nav-cta"><a href="index.html#projects">View Work</a></button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
         </div>
     </nav>
 
-    <main style="padding-top:100px;">
-        <section class="contact">
+    <main class="page-shell">
+        <section class="page-hero contact-hero">
             <div class="container">
-                <h2 class="section-title">Contact Me</h2>
+                <p class="hero-eyebrow">Let’s work together</p>
+                <h1>Send a message and I’ll reply as soon as possible.</h1>
+                <p class="hero-description">Use the form below to share your project idea, ask questions, or request a collaboration.</p>
+            </div>
+        </section>
+
+        <section class="contact-form-section">
+            <div class="container">
                 <form id="contactForm" class="contact-form" action="https://formspree.io/f/xdajjqpq" method="POST">
                     <div class="form-grid">
-                        <input type="text" name="firstName" id="firstName" placeholder="Your First Name" required>
-                        <input type="text" name="lastName" id="lastName" placeholder="Your Last Name" required>
-                        <input type="email" name="email" id="email" placeholder="Your Email" required>
-                        <input type="tel" name="phone" id="phone" placeholder="Your Phone">
-                        </div>
-                        <textarea name="message" id="message" rows="6" placeholder="Your Message" required></textarea>
+                        <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
+                        <input type="text" name="lastName" id="lastName" placeholder="Last Name" required>
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                        <input type="tel" name="phone" id="phone" placeholder="Phone">
                     </div>
+                    <textarea name="message" id="message" rows="6" placeholder="Write your message..." required></textarea>
                     <button type="submit" class="cta-button">Send Message</button>
                 </form>
             </div>
         </section>
     </main>
-
-    
 
     <script src="script.js"></script>
 </body>

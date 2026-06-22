@@ -1,63 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-41D8GFXXLB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-41D8GFXXLB');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diell Morina - Web Portfolio</title>
+    <title>Diell Morina | Front-End Developer</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-41D8GFXXLB"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-41D8GFXXLB');
-    </script>
 </head>
 <body>
+    <div id="preloader" class="preloader">
+        <div class="preloader-card">
+            <div class="preloader-logo">Diell<span>Morina</span></div>
+            <div class="preloader-body">
+                <div class="spinner"></div>
+                <div class="loader-copy">
+                    <p class="loader-title">Launching interface</p>
+                    <p class="loader-subtitle">Preparing a sleek experience...</p>
+                </div>
+                <div class="loader-percent" id="loaderPercent">0%</div>
+            </div>
+        </div>
+    </div>
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="container">
-            <div class="logo">Diell Morina</div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+        <div class="container nav-inner">
+            <a href="#home" class="logo">Diell<span>Morina</span></a>
+            <div class="nav-actions">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="cta-button nav-cta"><a href="#projects">View Work</a></button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Web Projects Showcase</h1>
-            <p>Explore my latest web design and development projects</p>
-            <a href="#projects" class="cta-button">View Projects</a>
+        <div class="container hero-inner">
+            <div class="hero-copy">
+                <p class="hero-eyebrow">Front-End Developer</p>
+                <h1>Building polished, high-performance web experiences for modern brands.</h1>
+                <p class="hero-description">I translate ideas into responsive interfaces with clean code, crisp design, and subtle motion. My work focuses on accessible websites, elegant product pages, and memorable digital experiences.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="cta-button">See Projects</a>
+                    <a href="#contact" class="cta-button cta-outline">Say Hello</a>
+                </div>
+                <div class="hero-meta">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                    <span>React</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container about-grid">
-            <div class="about-photo" aria-hidden="true"></div>
-            <div class="about-content">
-                <h2 class="section-title">About Me</h2>
-                <p>I'm a student at the Digital School of Kosovo and a Front-End Developer. I build responsive websites using HTML, CSS, and JavaScript. I'm currently learning React and improving my skills to create accessible, user-friendly interfaces.</p>
-                
+            <div class="about-copy">
+                <p class="section-subtitle">About Me</p>
+                <h2 class="section-title">Design-driven development for strong digital presence.</h2>
+                <p>I am a Front-End Developer from Kosovo, currently studying at the Digital School of Kosovo. I build responsive websites using HTML, CSS, and JavaScript, and I am exploring React while sharpening my skills in modern UI, performance, and accessibility.</p>
+            </div>
+            <div class="about-details">
+                <div class="about-list">
+                    <div>
+                        <strong>Projects</strong>
+                        <p>Responsive web apps, business sites, and interactive portfolios.</p>
+                    </div>
+                    <div>
+                        <strong>Approach</strong>
+                        <p>Clean visual hierarchy, micro-interactions, and fast load times.</p>
+                    </div>
+                    <div>
+                        <strong>Focus</strong>
+                        <p>Accessible layouts, mobile-first design, and polished execution.</p>
+                    </div>
+                </div>
+                <div class="skills-grid">
+                    <span class="skill-chip">HTML</span>
+                    <span class="skill-chip">CSS</span>
+                    <span class="skill-chip">JavaScript</span>
+                    <span class="skill-chip">React</span>
+                    <span class="skill-chip">UI/UX</span>
+                    <span class="skill-chip">Responsive</span>
+                </div>
             </div>
         </div>
     </section>
@@ -65,6 +100,7 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
+            <p class="section-subtitle">Selected Work</p>
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid" id="projectsContainer">
                 <!-- Projects will be loaded here dynamically -->
@@ -89,19 +125,24 @@
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p>Interested in my work? Let me know!</p>
-            <p>Tel: +38345141733</p>
-            <p>Email: diell.morina5@gmail.com</p>
-            <a href="contact.html" class="cta-button contact-me">Contact Me</a>
+        <div class="container contact-inner">
+            <div>
+                <p class="section-subtitle">Contact</p>
+                <h2 class="section-title">Let’s build something together.</h2>
+                <p>If you have a project idea or want to collaborate, I’m available to help with front-end development and polished UI execution.</p>
+            </div>
+            <div class="contact-details">
+                <a href="mailto:diell.morina5@gmail.com">diell.morina5@gmail.com</a>
+                <a href="tel:+38345141733">+383 45 141 733</a>
+                <a href="contact.html" class="cta-button">Contact Form</a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 My Projects. All rights reserved.</p>
+        <div class="container footer-inner">
+            <p>&copy; 2026 Diell Morina</p>
         </div>
     </footer>
 

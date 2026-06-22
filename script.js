@@ -6,7 +6,8 @@ const projects = [
         description: "Modern athletic brand e-commerce platform featuring product showcase, multilingual support (English/Albanian), and user authentication system for a professional shopping experience.",
         image: "Projects/Apex-Athletics-Preview.png",
         url: "https://apex-athletic.vercel.app/",
-        tag: "E-Commerce"
+        tag: "E-Commerce",
+        languages: ["HTML", "CSS", "JavaScript", "React"]
     },
     {
         id: 2,
@@ -14,7 +15,8 @@ const projects = [
         description: "Professional photography and video production portfolio. Showcases wedding photography, event coverage, and creative production services with a sleek, elegant design.",
         image: "Projects/Foto-Limani-Preview.png",
         url: "https://foto-limani.netlify.app/",
-        tag: "Photography"
+        tag: "Photography",
+        languages: ["HTML", "CSS", "JavaScript"]
     },
     {
         id: 3,
@@ -22,47 +24,53 @@ const projects = [
         description: "Professional facade and exterior renovation services website. Features project gallery, service descriptions, supplier information, and bilingual interface (English/Albanian).",
         image: "Projects/SUVATIMI-H-Preview.png",
         url: "https://suvatimi.vercel.app/",
-        tag: "Business"
+        tag: "Business",
+        languages: ["HTML", "CSS", "JavaScript"]
     },
-    {
-        id: 4,
-        title: "Nordwall Studio",
-        description: "Nordwall Studio is a modern creative web studio focused on building sleek, responsive, and visually engaging digital experiences. The website showcases clean design, smooth animations, and professional development work tailored for brands, startups, and businesses looking to strengthen their online presence.",
-        image: "Projects/nordwall-Preview.png",
-        url: "https://nordwall-studio.vercel.app/",
-        tag: "Business"
-    },
+    // {
+    //     id: 4,
+    //     title: "Nordwall Studio",
+    //     description: "Nordwall Studio is a modern creative web studio focused on building sleek, responsive, and visually engaging digital experiences. The website showcases clean design, smooth animations, and professional development work tailored for brands, startups, and businesses looking to strengthen their online presence.",
+    //     image: "Projects/nordwall-Preview.png",
+    //     url: "https://nordwall-studio.vercel.app/",
+    //     tag: "Business",
+    //     languages: ["HTML", "CSS", "JavaScript", "React"]
+    // },
     {
         id: 5,
         title: "Nissi Barber Shop",
         description: "Professional barber shop website showcasing services, gallery, and booking information. Clean, modern design tailored for a salon business.",
         image: "Projects/nissi-Preview.png",
         url: "https://barbershop-nissi.vercel.app/",
-        tag: "Barber Shop"
+        tag: "Barber Shop",
+        languages: ["HTML", "CSS", "JavaScript"]
     },
-    {
-        id: 6,
-        title: "Kosovo EVENTS",
-        description: "Event listing and management platform for Kosovo. Features event discovery, categorization, and user-friendly interface for organizers and attendees.",
-        image: "Projects/ksevents-Preview.png",
-        url: "https://kosovo-events.vercel.app/",
-        tag: "Events"
-    },
+    // {
+    //     id: 6,
+    //     title: "Kosovo EVENTS",
+    //     description: "Event listing and management platform for Kosovo. Features event discovery, categorization, and user-friendly interface for organizers and attendees.",
+    //     image: "Projects/ksevents-Preview.png",
+    //     url: "https://kosovo-events.vercel.app/",
+    //     tag: "Events",
+    //     languages: ["HTML", "CSS", "JavaScript"]
+    // },
     {
         id: 7,
         title: "Fshati Ratkoc",
         description: "Informative website about Ratkoc village in Kosovo. Showcases local culture, history, attractions, and community information with a clean, modern design.",
         image: "Projects/Ratkoc-Preview.png",
         url: "https://fshati-ratkoc.vercel.app/",
-        tag: "Local"
+        tag: "Local",
+        languages: ["HTML", "CSS", "JavaScript"]
     },
     {
         id: 8,
-        title: "Pecara Vojvodina",
-        description: "Freshly baked every day, Pecara Vojvodina offers delicious breads, pastries, burek, sandwiches, and desserts made with traditional recipes and high-quality ingredients. Experience the taste of homemade goodness in every bite..",
+        title: "Pekara Vojvodina",
+        description: "Freshly baked every day, Pekara Vojvodina offers delicious breads, pastries, burek, sandwiches, and desserts made with traditional recipes and high-quality ingredients. Experience the taste of homemade goodness in every bite..",
         image: "Projects/Furra-Preview.jpeg",
-        url: "https://pecara-vojvodina.vercel.app/",
-        tag: "Local"
+        url: "https://pekara-vojvodina.vercel.app/",
+        tag: "Business",
+        languages: ["HTML", "CSS", "JavaScript"]
     }
 ];
 
@@ -97,11 +105,62 @@ window.addEventListener('scroll', () => {
     }
 });
 
+const preloaderStart = performance.now();
+
 // Initialize Projects
 function initializeProjects() {
-    renderProjects();
-    attachEventListeners();
+    if (projectsContainer) {
+        renderProjects();
+        attachEventListeners();
+    }
 }
+
+function hidePreloader() {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+    preloader.classList.add('hide');
+    setTimeout(() => {
+        if (preloader.parentNode) {
+            preloader.parentNode.removeChild(preloader);
+        }
+    }, 450);
+}
+
+// Animate loader percent from 0% -> 100% and keep preloader at least 2s
+const PRELOADER_MIN = 2000; // milliseconds
+let loadEventFired = false;
+let progressFinished = false;
+
+function maybeHide() {
+    if (loadEventFired && progressFinished) hidePreloader();
+}
+
+function animatePreloaderPercent(duration) {
+    const el = document.getElementById('loaderPercent');
+    if (!el) return;
+    const start = preloaderStart;
+    function frame() {
+        const elapsed = performance.now() - start;
+        const pct = Math.min(100, Math.round((elapsed / duration) * 100));
+        el.textContent = pct + '%';
+        if (elapsed < duration) {
+            requestAnimationFrame(frame);
+        } else {
+            el.textContent = '100%';
+            progressFinished = true;
+            maybeHide();
+        }
+    }
+    requestAnimationFrame(frame);
+}
+
+window.addEventListener('load', () => {
+    loadEventFired = true;
+    maybeHide();
+});
+
+// start percent animation immediately
+animatePreloaderPercent(PRELOADER_MIN);
 
 // Render Projects to Grid
 function renderProjects() {
@@ -111,6 +170,9 @@ function renderProjects() {
             <div class="project-info">
                 <h3 class="project-title">${project.title}</h3>
                 <p class="project-description">${project.description}</p>
+                <div class="project-languages">
+                    ${project.languages.map(language => `<span class="language-chip">${language}</span>`).join('')}
+                </div>
                 <span class="project-tag">${project.tag}</span>
             </div>
         </div>
