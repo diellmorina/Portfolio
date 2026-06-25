@@ -165,7 +165,7 @@ animatePreloaderPercent(PRELOADER_MIN);
 // Render Projects to Grid
 function renderProjects() {
     projectsContainer.innerHTML = projects.map(project => `
-        <div class="project-card" onclick="openProjectModal(${project.id})">
+        <div class="project-card">
             <div class="project-image-wrap">
                 <img src="${project.image}" alt="${project.title}" class="project-image">
                 <a href="${project.url}" class="project-preview-link" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
